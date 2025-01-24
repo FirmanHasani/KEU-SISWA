@@ -23,8 +23,7 @@ $searchTerm = cegah($_GET['query']);
 
 
 $query = "SELECT * FROM m_siswa ".
-			"WHERE nis LIKE '%".$searchTerm."%' ".
-			"OR nama LIKE '%".$searchTerm."%' ".
+			"WHERE nama LIKE '%".$searchTerm."%' ".
 			"ORDER BY tapel DESC, ".
 			"nama ASC";
 $result = mysqli_query($koneksi, $query);
@@ -36,10 +35,9 @@ if (mysqli_num_rows($result) > 0)
     {
     while ($row = mysqli_fetch_assoc($result))
 	    {
-	    $i_nis = balikin($row["nis"]);
 	    $i_nama = balikin($row["nama"]);
 	    $i_kelas = balikin($row["kelas"]);
-	    $data[] = "$i_nama NIS.$i_nis KELAS.$i_kelas";
+	    $data[] = "$i_nama KELAS.$i_kelas";
 	    }
 
     echo json_encode($data);
